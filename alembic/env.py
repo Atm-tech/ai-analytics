@@ -17,6 +17,9 @@ from app.models.purchase import Base
 from app.models.stock import Base
 from app.models.sale import Base
 from app.models.outlet import Base
+from app.models.speed_tier_definition import Base
+from app.models.definition_set import Base
+from app.models.definition import Base
 # Alembic Config
 config = context.config
 

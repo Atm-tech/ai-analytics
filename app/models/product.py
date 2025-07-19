@@ -8,8 +8,8 @@ class Product(Base):
     barcode = Column(String, primary_key=True, index=True)
     article_name = Column(String, nullable=False)
 
-    category1 = Column(String, nullable=False)
-    category2 = Column(String, nullable=False)
+    category1 = Column(String, nullable=True)
+    category2 = Column(String, nullable=True)
     category3 = Column(String, nullable=True)
     category4 = Column(String, nullable=True)  # may be used for pack size later
     category5 = Column(String, nullable=True)

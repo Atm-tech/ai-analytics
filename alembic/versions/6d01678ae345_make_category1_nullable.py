@@ -1,8 +1,8 @@
-"""new
+"""Make category1 nullable
 
-Revision ID: 96cd633a5144
+Revision ID: 6d01678ae345
 Revises: 
-Create Date: 2025-07-01 14:44:33.420345
+Create Date: 2025-07-14 16:29:41.433646
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '96cd633a5144'
+revision: str = '6d01678ae345'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,8 +32,8 @@ def upgrade() -> None:
     op.create_table('products',
     sa.Column('barcode', sa.String(), nullable=False),
     sa.Column('article_name', sa.String(), nullable=False),
-    sa.Column('category1', sa.String(), nullable=False),
-    sa.Column('category2', sa.String(), nullable=False),
+    sa.Column('category1', sa.String(), nullable=True),
+    sa.Column('category2', sa.String(), nullable=True),
     sa.Column('category3', sa.String(), nullable=True),
     sa.Column('category4', sa.String(), nullable=True),
     sa.Column('category5', sa.String(), nullable=True),
@@ -44,7 +44,7 @@ def upgrade() -> None:
     sa.Column('rsp', sa.Float(), nullable=False),
     sa.Column('mrp', sa.Float(), nullable=False),
     sa.Column('wsp', sa.Float(), nullable=True),
-    sa.Column('hsn_code', sa.String(), nullable=False),
+    sa.Column('hsn_sac_code', sa.String(), nullable=False),
     sa.Column('tax_name', sa.String(), nullable=False),
     sa.Column('tax_percent', sa.Float(), nullable=True),
     sa.Column('pack_size', sa.String(), nullable=True),
@@ -65,10 +65,10 @@ def upgrade() -> None:
     op.create_table('purchases',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('barcode', sa.String(), nullable=False),
-    sa.Column('supplier', sa.String(), nullable=True),
+    sa.Column('supplier', sa.String(), nullable=False),
     sa.Column('grc_number', sa.String(), nullable=False),
-    sa.Column('quantity', sa.Float(), nullable=True),
-    sa.Column('net_amount', sa.Float(), nullable=True),
+    sa.Column('quantity', sa.Float(), nullable=False),
+    sa.Column('net_amount', sa.Float(), nullable=False),
     sa.Column('unit_price', sa.Float(), nullable=True),
     sa.Column('rsp', sa.Float(), nullable=True),
     sa.Column('purchase_date', sa.DateTime(), nullable=True),

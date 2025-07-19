@@ -8,11 +8,11 @@ class Purchase(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     barcode = Column(String, ForeignKey("products.barcode"), index=True, nullable=False)
-    supplier = Column(String, nullable=True)
+    supplier = Column(String, nullable=False)
     grc_number = Column(String, index=True, nullable=False)
-    quantity = Column(Float, nullable=True)
+    quantity = Column(Float, nullable=False)
     
-    net_amount = Column(Float, nullable=True)     # total amount paid for qty ✅
+    net_amount = Column(Float, nullable=False)     # total amount paid for qty ✅
     unit_price = Column(Float, nullable=True)     # calculated: net / qty ✅
 
     rsp = Column(Float, nullable=True)

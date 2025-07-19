@@ -1,69 +1,34 @@
 # app/utils/column_definitions.py
 
-COLUMN_MAP = {
-    # ✅ Base File (Products)
-    "BARCODE": "barcode",
-    "ARTICLE NAME": "article_name",
-    "CATEGORY1": "category1",
-    "CATEGORY2": "category2",
-    "CATEGORY3": "category3",
-    "CATEGORY4": "category4",
-    "CATEGORY5": "category5",
-    "CATEGORY6": "category6",
-    "DIVISION": "division",
-    "DEPARTMENT": "department",
-    "SECTION": "section",
-    "RSP": "rsp",
-    "WSP": "wsp",
-    "MRP": "mrp",
-    "HSN CODE": "hsn_sac_code",
-    "TAX %": "tax_name",  # e.g. GST 18%
+column_aliases = {
+    "barcode": ["BARCODE"],
+    "article_name": ["ARTICLE NAME", "ARTICLE_NAME"],
+    "category1": ["CATEGORY1","BRAND"],
+    "category2": ["CATEGORY2","name", "NAME", "item name", "ITEMNAME"],
+    "category3": ["CATEGORY3"],
+    "category4": ["CATEGORY4", "SIZE"],
+    "category5": ["CATEGORY5"],
+    "category6": ["CATEGORY6", "CAT-6"],
+    "supplier" : ["SUPPLIER NAME", "Supplier","SUPPLIER"],
+    "division": ["DIVISION"],
+    "department": ["DEPARTMENT"],
+    "section": ["SECTION"],
     
-    # ✅ Purchase File
-    "SUPPLIER": "supplier",
-    "GRC NO":"ENTRY_NO","ENTRY_NO": "grc_number",
-    "NET AMT": "net_amount","PUR_QTY": "quantity",
-    "PURCHASE PRICE": "purchase_price",  # WSP
-    "PURCHASE DATE": "purchase_date",
-
-    # ✅ Sales File
-    "OUTLET": "outlet_name",
-    "NET AMOUNT": "net_amount",
-    "DATE": "date",
-
-    # ✅ Closing Stock File
-    "CLOSING QTY": "closing_quantity",
-        "BARCODE": "barcode",
-    "ARTICLE_NAME": "article_name",
-    "ITEM_NAME": "article_name",  # if present, fallback
-    "CATEGORY1": "category1",
-    "CATEGORY2": "category2",
-    "CATEGORY3": "category3",
-    "CATEGORY4": "category4",
-    "CATEGORY5": "category5",
-    "CATEGORY6": "category6",
-    "DIVISION": "division",
-    "DEPARTMENT": "department",
-    "SECTION": "section",
-    "MRP": "mrp",
-    "RSP": "rsp",
-    "WSP": "wsp",
-    "HSN_CODE": "hsn_sac_code",
-    "TAX_NAME": "tax_name",
-
-    # === Purchase-related ===
-    "SUPPLIER NAME": "supplier",
-    "SUPPLIER": "supplier",  # fallback
-    "ENTRY_NO": "grc_number",
-    "INVOICE NO": "grc_number",  # fallback alias
-    "PURCHASE DATE": "purchase_date",
-    "PUR_QTY": "quantity",
-    "NET AMT": "net_amount",
-    
-    # === Sales-related ===
-    "OUTLET": "outlet_name",
-    "DATE": "date",
-
-    # === Closing Stock-related ===
-    "CLOSING QTY": "closing_quantity"
+    "rsp": ["RSP"],
+    "mrp": ["MRP"],
+    "wsp": ["WSP", "PURCHASE PRICE"],
+    "hsn_sac_code": ["HSN CODE", "HSN_CODE", "HSN_SAC_CODE"],
+    "tax_name": ["TAX_NAME", "TAX %"],
+    "cgst": ["CGST"],
+    "sgst": ["SGST"],
+    "igst": ["IGST"],
+    "cess": ["CESS"],
+    "net_amount": ["NET AMT", "NET AMOUNT"],
+    "gross_amount": ["GROSS_AMT"],
+    "quantity": ["QTY", "PUR_QTY", "QUANTITY"],
+    "grc_number": ["ENTRY_NO", "GRC NO", "INVOICE NO"],
+    "purchase_date": ["ENTRY_DATE", "PURCHASE DATE"],
+    "outlet_name": ["SITE NAME", "MARKET", "OUTLET"],
+    "closing_quantity": ["CLOSING", "CLOSING QTY"],
+    "date": ["DATE"]
 }

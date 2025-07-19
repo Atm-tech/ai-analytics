@@ -1,0 +1,83 @@
+**ISMS Project Summary — Archive for Later Resumption**
+
+1. **Core Objective**
+
+   * Build a smart, schema-flexible analytics engine driven by Excel uploads and natural language querying.
+   * Focus on product movement, performance, and intelligent outlet-level suggestions.
+   * Support voice and typed queries, with a split-screen analytics UI.
+
+2. **Upload Behavior**
+
+   * **Base File**: Updated with each purchase upload. Barcodes unique. Existing products updated. New added.
+   * **Purchase Files**: Expand-only. Skips exact duplicates using `entry_no`, date, and full row check. Also used to update base.
+   * **Sales Files**: Expand-only. Duplicate check based on date + barcode.
+   * **Closing Stock Files**: Overwrite entire table. Uses `barcode` + `OUTLET`.
+
+3. **Table Types**
+
+   * Updatable
+   * Append-only
+   * Overwrite
+
+4. **Analytics Definitions System**
+
+   * User can define concepts like `superfast = 80% sold in 30 days`.
+   * Definitions are stored in sessions, reusable.
+   * Query parser matches definitions to question terms.
+   * Output includes filters used, result summary, and downloadable CSV.
+
+5. **Definition Backend**
+
+   * `/definition_sets/` and `/definitions/` CRUD built.
+   * Active definitions sent to `/query/analyze` to return insights.
+
+6. **Frontend**
+
+   * Split-screen UI:
+
+     * Left: Definitions list and input
+     * Right: Questions and results
+     * CSV download button shows after results
+
+7. **Planned Intelligence**
+
+   * Identify similar products (by category, RSP, name).
+   * Track supplier performance per product.
+   * Recommend stock movement (outlet A → B).
+   * Go-down to outlet transfer planning on new purchase.
+   * Learning engine for smart responses to user queries.
+
+8. **Incentive Logic (separate module)**
+
+   * **Big Bill**, **Personal Target**, **Outlet Target**, **Tiered Thresholds**
+   * Supports both `flat` ₹ and `trait_boost` %
+   * Logic implemented in `submit_sale`
+   * Frontend preview of incentive before submission
+
+9. **Sales Target Assignment**
+
+   * Admin panel for assigning per-outlet and per-salesman targets
+   * Bulk assignment supported by outlet filter
+   * End-of-month summary export with achievement & tier evaluation
+
+10. **Frontend Files**
+
+* `analytics.tsx`: Split-screen analytics UI
+* `IncentiveControl.jsx`: Main incentive panel with tab switching
+* Modular components being extracted (BigBillPanel, etc.)
+
+11. **Backend Architecture**
+
+* `definition_set`, `definition`, `salesman_target`, `incentive_rule` models created
+* Alembic migrations handled manually by user
+
+12. **Next Steps for Resumption**
+
+* Reconnect upload logic to analytics processing engine
+* Plug column mapping intelligence into every file parser
+* Expand query parser to handle more question types (comparison, ranking, suggestions)
+* Start building admin dashboard layout + controls
+
+This document stores the full current state of the ISMS project. When you resume, upload the latest ZIP, revisit this summary, and we'll continue from exactly here.
+
+— ChatGPT (v2)

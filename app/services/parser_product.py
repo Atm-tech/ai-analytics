@@ -3,7 +3,7 @@ from io import BytesIO
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
 from app.models.product import Product
-from app.utils.column_definitions import COLUMN_MAP
+from app.utils.column_resolver import resolve_columns
 
 REQUIRED_PRODUCT_COLS = {
     "barcode", "article_name",
@@ -21,11 +21,8 @@ def process_base_file(file: UploadFile, db: Session):
     try:
         contents = file.file.read()
         df = pd.read_excel(BytesIO(contents))
+        df = resolve_columns(df)
 
-        # Normalize column names
-        df.rename(columns=lambda col: COLUMN_MAP.get(col.strip().upper(), col.strip()), inplace=True)
-
-        # Check required product fields
         missing = REQUIRED_PRODUCT_COLS - set(df.columns)
         if missing:
             raise HTTPException(status_code=400, detail=f"Missing product columns: {missing}")
@@ -34,7 +31,6 @@ def process_base_file(file: UploadFile, db: Session):
 
         for _, row in df.iterrows():
             barcode = str(row.get("barcode")).strip()
-
             product = db.query(Product).filter_by(barcode=barcode).first()
 
             values = {
